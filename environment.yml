@@ -1,0 +1,17 @@
+name: ecological-value
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - jupyterlab
+  - ipykernel
+  - rasterio
+  - gdal
+  - geopandas
+  - numpy
+  - matplotlib
+  - pandas
+  - folium
+  - branca
+  - pillow
+  - tqdm
