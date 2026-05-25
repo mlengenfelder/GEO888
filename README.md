@@ -7,34 +7,27 @@ processing script.
 All available input rasters are transformed to a shared grid:
 
 - CRS: `EPSG:3035`
-- resolution: `1000 m`
-- extent/grid: derived from CORINE
-- output folder: `Data/Processed`
+- Resolution: `1000 m`
+- Extent/Grid: derived from CORINE
+- Output folder: `Data/Processed`
 
 ## Inputs
 
-| Category | Indicator | Unit / processing | Dataset | Use |
+| Category | Indicator | Operationalization | Dataset | Source |
 |---|---|---|---|---|
-| Forest area | Extent of analysis | Forest yes/no | CORINE Land Cover 2018 + VAT DBF | Final mask only |
-| Biodiversity | Species richness / endangered species | Natura2000 habitat yes/no | Natura2000 | Binary 0/1 layer |
-| Biodiversity | Value of forest | Forest type proxy | CORINE Land Cover 2018 | Broad-leaved `311/23 = 1.00`, mixed `313/25 = 0.75`, coniferous `312/24 = 0.50` |
-| Provisioning | Timber production | 0-1 normalized BAWS | BAWS Map 2020 | Provisioning category |
-| Cultural | Recreation / naturalness | `1 - gHM` | Global Human Modification | Cultural category |
-| Regulating | Climate regulation / biomass | 0-1 normalized biomass | Biomass Map 2020 | Regulating sub-indicator |
-| Regulating | Air quality burden | `1 - PM2.5_norm` | PM2.5 2019 | Regulating sub-indicator |
-
-The CORINE DBF is an attribute table, not a spatial mask. The notebook reads it
-to document that CLC classes `311`, `312`, and `313` are stored as raster values
-`23`, `24`, and `25`. The actual forest mask is created directly from the
-CORINE raster.
+| Forest area | Extent of analysis | Forest yes/no | CORINE Land Cover 2018 | Forest mask (Copernicus)|
+| Biodiversity | Species richness | Natura2000 habitat yes/no | Natura2000 | European Environment Agency (EEA)  |
+| Biodiversity | Value of forest | Forest type proxy | CORINE Land Cover 2018 | Lozano et al., 2025 |
+| Provisioning | Timber production | Ton per ha of timber production  | Forest Biomass Available for Wood Supply 2020 | Avitabile, V. (2023) via Figshare |
+| Cultural | Recreation / Naturalness | Continuous 0-1 metric (proportion of landscape modified) | Global Human Modification (gHM)| Kennedy, C. et al. (2018) via Figshare |
+| Regulating | Climate regulation / Biomass | Ton per ha of dry aboveground forest biomass density | Biomass Map 2020 | Avitabile, V. (2023) via Figshare Collection |
+| Regulating | Air quality burden | Microscopic airborne particles (< 2.5μm) | European air quality data for 2019 | European Environment Agency (EEA) via EEA SDI Portal |
 
 ## Setup in VS Code
 
 ```bash
 conda env create -f environment.yml
 conda activate ecological-value
-python -m ipykernel install --user --name ecological-value --display-name "Python (ecological-value)"
-code .
 ```
 
 Expected input files:
@@ -116,9 +109,9 @@ The notebook checks that all output rasters have:
 
 - CRS `EPSG:3035`
 - `1000 m` pixel size
-- identical width, height, and transform
-- score values between `0` and `1`
-- final MESLI values only on forest pixels
+- Identical width, height, and transform
+- Score values between `0` and `1`
+- Final MESLI values only on forest pixels
 
 It writes validation tables to:
 
