@@ -1,6 +1,9 @@
 # Ignore all data (Raw and Processed)
 Data
 
+# Ignore Outputs
+Outputs
+
 # Ignore system "junk" (prevents Mac/Windows conflict files)
 .DS_Store
 Thumbs.db

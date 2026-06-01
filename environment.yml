@@ -5,13 +5,18 @@ dependencies:
   - python=3.11
   - jupyterlab
   - ipykernel
+  - numpy
+  - pandas
   - rasterio
   - gdal
   - geopandas
-  - numpy
+  - affine
   - matplotlib
-  - pandas
+  - pillow
   - folium
   - branca
-  - pillow
-  - tqdm
+  - numba
+  - mapclassify
+  - pip
+  - pip:
+    - mapclassify   # conda-forge version sometimes lags
