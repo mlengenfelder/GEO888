@@ -1,8 +1,60 @@
-# Ecological Value / MESLI
+# Wildfire Risk Indicator
 
-This project creates the ecological value axis as a forest-only MESLI raster.
-The complete workflow is implemented in `notebook.ipynb`; there is no separate
-processing script.
+This project has the goal of creating an Environmental Indicator. The Final Indicator is a bivariate Matrix consisting of two axis. One is a vulnerability axis. This one was premade in QGIS and is provided as one final _.tif_ that can be downloaded and put into the raw data folder. The other one is the Ecological value axis, that is based on the MESLI framework, decsribed below. This one was made in the notebook *ecological_value.ipynb*. In another notebook *final_indicator.ipynb*, the two axis are combined to the bivariate matrix. A third notebook *name* provides extra context, regarding the policy of the targeted countries, providing a potential framework for making the indicator performance-based. 
+
+##  Setup Instructions
+
+### Step 1: Clone the Repository
+First, download this repository to your local Desktop (or use another location of your preference) and enter the directory:
+
+```bash
+cd ~/Desktop
+git clone https://github.com/mlengenfelder/GEO888
+cd GEO888
+```
+
+### Step 2: Create and Activate the Environment
+
+```bash
+conda env create -f environment.yml
+conda activate ecological-value
+```
+
+### Step 3: Initialize the Directory Structure
+* Open your Jupyter environment, open the notebook *ecological_value.ipynb*, select ecological-value as your kernel, and run the very first setup cell (Section: _0. Setup_).
+* Running this cell automatically creates the local folder path structure (data/raw/, data/processed/, outputs/, etc.) that is missing from the repository.
+
+### Step 4: Download and Position the Raw Data
+Now that the paths exist, download the raw data. Access the links below and place all input data into the raw data folder, that you just created!
+
+* GEO888/Data/Raw/
+
+[Download here](https://drive.google.com/drive/folders/1jIK69oq6_iNJsSKrOb4NRa5fp5jVXjcp?usp=share_link)
+
+Expected input files:
+
+```text
+Data/Raw/BAWS_Map_2020.tif
+Data/Raw/Biomass_Map_2020.tif
+Data/Raw/gHM_Clipped.tif
+Data/Raw/pm25_avg19.tif
+Data/Raw/U2018_CLC2018_V2020_20u1.tif
+Data/Raw/U2018_CLC2018_V2020_20u1.tif.vat.dbf
+Data/Raw/Natura2000_end2024.gpkg
+Data/Raw/final_vulnerability_layer.tif
+```
+
+## Execution Order
+* Open the _ecological_value.ipynb_ notebook.
+* Ensure your notebook kernel is set to _ecological-value_.
+* Run the remaining cells sequentially from top to bottom (Cell-wise is highly recommended).
+* When you completed running the first notebook, run the final notebook *final_indicator.ipynb*.
+* All outputs (interactive maps, plots, and metrics) will be saved in outputs/ and data / processed. 
+
+# 1. Notebook: Ecological Value / MESLI (ecological_value.ipynb)
+
+This notebook creates the ecological value axis as a forest-only MESLI raster.
+It is the notebook to run **FIRST**!
 
 All available input rasters are transformed to a shared grid:
 
@@ -22,55 +74,6 @@ All available input rasters are transformed to a shared grid:
 | Cultural | Recreation / Naturalness | Continuous 0-1 metric (proportion of landscape modified) | Global Human Modification (gHM)| Kennedy, C. et al. (2018) via Figshare |
 | Regulating | Climate regulation / Biomass | Ton per ha of dry aboveground forest biomass density | Biomass Map 2020 | Avitabile, V. (2023) via Figshare Collection |
 | Regulating | Air quality burden | Microscopic airborne particles (< 2.5μm) | European air quality data for 2019 | European Environment Agency (EEA) via EEA SDI Portal |
-
-## Setup in VS Code
-
-```bash
-conda env create -f environment.yml
-conda activate ecological-value
-```
-
-Expected input files:
-
-```text
-Data/Raw/BAWS_Map_2020.tif
-Data/Raw/Biomass_Map_2020.tif
-Data/Raw/gHM_Clipped.tif
-Data/Raw/pm25_avg19.tif
-Data/Raw/U2018_CLC2018_V2020_20u1.tif
-Data/Raw/U2018_CLC2018_V2020_20u1.tif.vat.dbf
-Data/Raw/Natura2000_end2024.gpkg
-```
-
-## Run
-
-Open `notebook.ipynb` in VS Code and run the cells from top to bottom.
-
-## Outputs
-
-```text
-Data/Processed/corine_1000m_epsg3035.tif
-Data/Processed/forest_mask_1000m_epsg3035.tif
-Data/Processed/forest_type_score_1000m_epsg3035.tif
-Data/Processed/natura2000_binary_1000m_epsg3035.tif
-Data/Processed/baws_1000m_epsg3035.tif
-Data/Processed/biomass_1000m_epsg3035.tif
-Data/Processed/ghm_1000m_epsg3035.tif
-Data/Processed/pm25_1000m_epsg3035.tif
-Data/Processed/baws_norm_1000m_epsg3035.tif
-Data/Processed/biomass_norm_1000m_epsg3035.tif
-Data/Processed/ghm_inverted_1000m_epsg3035.tif
-Data/Processed/pm25_inverted_norm_1000m_epsg3035.tif
-Data/Processed/provisioning_score_1000m_epsg3035.tif
-Data/Processed/cultural_score_1000m_epsg3035.tif
-Data/Processed/regulating_score_1000m_epsg3035.tif
-Data/Processed/biodiversity_score_1000m_epsg3035.tif
-Data/Processed/MESLI_ecological_value_raw_1000m_epsg3035.tif
-Data/Processed/MESLI_ecological_value_1000m_epsg3035.tif
-Data/Processed/indicator_summary.csv
-Data/Processed/output_grid_validation.csv
-Data/Processed/MESLI_interactive_map.html
-```
 
 ## MESLI Formula
 
@@ -113,9 +116,6 @@ The notebook checks that all output rasters have:
 - Score values between `0` and `1`
 - Final MESLI values only on forest pixels
 
-It writes validation tables to:
+# 2. Notebook: Final Indicator (final_indicator.ipynb)
 
-```text
-Data/Processed/indicator_summary.csv
-Data/Processed/output_grid_validation.csv
-```
+.....
