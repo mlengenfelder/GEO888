@@ -17,7 +17,7 @@ cd GEO888
 
 ```bash
 conda env create -f environment.yml
-conda activate ecological-value
+conda activate wildfire_indicator
 ```
 
 ### Step 3: Initialize the Directory Structure
@@ -42,13 +42,15 @@ Data/Raw/U2018_CLC2018_V2020_20u1.tif
 Data/Raw/U2018_CLC2018_V2020_20u1.tif.vat.dbf
 Data/Raw/Natura2000_end2024.gpkg
 Data/Raw/final_vulnerability_layer.tif
+Data/Raw/Forestfires_report_EU.pdf
 ```
 
 ## Execution Order
-* Open the _ecological_value.ipynb_ notebook.
+* Open the *ecological_value.ipynb* notebook.
 * Ensure your notebook kernel is set to _ecological-value_.
 * Run the remaining cells sequentially from top to bottom (Cell-wise is highly recommended).
-* When you completed running the first notebook, run the final notebook *final_indicator.ipynb*.
+* When you completed running the 1st notebook, run the 2nd notebook *final_indicator.ipynb*.
+* After that, run the 3rd and final notebook *script_performance_based.ipynb*.
 * All outputs (interactive maps, plots, and metrics) will be saved in outputs/ and data / processed. 
 
 # 1. Notebook: Ecological Value / MESLI (ecological_value.ipynb)
@@ -118,4 +120,10 @@ The notebook checks that all output rasters have:
 
 # 2. Notebook: Final Indicator (final_indicator.ipynb)
 
+## Inputs
+.....
+
+# 3. Notebook: NLP Processing or EU-Report for assesing policy measures across europe
+
+## Inputs
 .....

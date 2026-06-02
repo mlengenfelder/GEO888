@@ -1,4 +1,4 @@
-name: ecological-value
+name: wildfire_indicator
 channels:
   - conda-forge
 dependencies:
@@ -11,12 +11,15 @@ dependencies:
   - gdal
   - geopandas
   - affine
-  - matplotlib
-  - pillow
   - folium
   - branca
   - numba
-  - mapclassify
+  - pypdf
+  - pycountry
   - pip
   - pip:
-    - mapclassify   # conda-forge version sometimes lags
+    - mapclassify
+    - pymupdf
+    - pillow          # Für fehlerfreie Bildverarbeitung auf dem Mac
+    - matplotlib      # Ebenfalls hierhin verschoben, um Abhängigkeitskonflikte zu vermeiden
+    - openpyxl
