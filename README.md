@@ -181,7 +181,9 @@ Both input rasters are aligned to a shared grid (derived from the forest mask) b
 - Extent/Grid: derived from forest mask
 - Output folder: `Outputs/`
 
-## Inputs
+## Inputs for the Vulnerability raster
+
+The vulnerability layer was pre-processed in QGIS and Python and is provided as a single, ready-to-use `final_vulnerability_layer.tif`.
 
 | Variable | Operationalization | Dataset | Source |
 |---|---|---|---|
@@ -190,8 +192,6 @@ Both input rasters are aligned to a shared grid (derived from the forest mask) b
 | Distance to nearest fire station | Bivariate: 10 km buffer around fire stations (0 or 1) | OpenStreetMap | OSM, 2026 |
 | Historical fire occurrences | Historic Fire yes / no (0 or 1) | European Forest Fire Information System | EFFIS team, 2026 |
 | Climate Favorability | Normalization (0-1) and mean of daily values 2020–2025 | Fire danger index | Copernicus Climate Change Service, 2019 |
-
-The vulnerability layer above was pre-processed in QGIS and Python and is provided as a single, ready-to-use `final_vulnerability_layer.tif`. The MESLI ecological value raster is the direct output of notebook 1.
 
 ## Bivariate Classification
 
