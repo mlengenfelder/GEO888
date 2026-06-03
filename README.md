@@ -49,8 +49,8 @@ Data/Raw/Forestfires_report_EU.pdf
 * Open the *ecological_value.ipynb* notebook.
 * Ensure your notebook kernel is set to _ecological-value_.
 * Run the remaining cells sequentially from top to bottom (Cell-wise is highly recommended).
-* When you completed running the 1st notebook, run the 2nd notebook *final_indicator.ipynb*.
-* After that, run the 3rd and final notebook *script_performance_based.ipynb*.
+* When you completed running the 1st notebook, run the 2nd notebook *script_performance_based.ipynb*.
+* After that, run the 3rd and final notebook *final_indicator.ipynb*.
 * All outputs (interactive maps, plots, and metrics) will be saved in outputs/ and data / processed. 
 
 # 1. Notebook: Ecological Value / MESLI (ecological_value.ipynb)
@@ -118,12 +118,106 @@ The notebook checks that all output rasters have:
 - Score values between `0` and `1`
 - Final MESLI values only on forest pixels
 
-# 2. Notebook: Final Indicator (final_indicator.ipynb)
+# 2. Notebook: Policy-Coverage across Europe (script_performance_based.ipynb)
+
+This notebook provides contextual, performance-based framing for the wildfire risk indicator by analysing how comprehensively each European country addresses wildfire in its national policies.
+It is the notebook to run **SECOND**, after the preceding notebook has completed.
+
+The EU Forest Fire Report PDF is parsed country by country, and each country's text section is searched for a set of policy-relevant keywords. The resulting classification is exported as a tabular file and as a spatial layer that is consumed as an optional overlay in notebook 2's interactive map.
+
+- Output folder: `Data/Processed/` and `Outputs/`
 
 ## Inputs
-.....
 
-# 3. Notebook: NLP Processing or EU-Report for assesing policy measures across europe
+| File | Description | Source |
+|---|---|---|
+| `Data/Raw/Forestfires_report_EU.pdf` | EU forest fire report with national wildfire policy descriptions | EFFIS / EU Commission |
+
+## Keyword Search
+
+The notebook splits each country's text into sentences and checks for the presence of the following policy-related terms:
+
+| Keyword | Description |
+|---|---|
+| Prevention | Mentions of preventive measures |
+| Adaptation | Climate adaptation strategies |
+| Strategy | Formal national wildfire strategies |
+| Research activities | Funding or execution of wildfire research |
+| Wildfire management | Active management frameworks |
+| Awareness campaigns | Public education and outreach |
+| Information campaigns | Information dissemination programs |
+
+## Classification Formula
+
+```text
+Yes_Count = number of keywords found in country text
+
+Group = "Low"    if Yes_Count ≤ 1
+Group = "Medium" if Yes_Count ≤ 2 (and > 1)
+Group = "High"   if Yes_Count > 2
+```
+
+Each country receives a binary `Yes / No` per keyword, a total `Yes_Count`, and a three-tier `Group` classification.
+
+## Outputs
+
+| File | Description |
+|---|---|
+| `Data/Processed/country_texts/<Country>.txt` | Extracted plain-text section per country from the EU report |
+| `Data/Processed/keyword_classification3.xlsx` | Full keyword matrix with Yes/No flags, Yes_Count, and Group per country |
+| `Data/Processed/policy_layer.gpkg` | Country polygons with policy scores joined, in `EPSG:3035` |
+| `Outputs/Wildfire_policy_coverage.png` | Choropleth map of wildfire-policy coverage across Europe |
+
+# 3. Notebook: Final Indicator (final_indicator.ipynb)
+
+This notebook combines the two indicator axes — _ecological-value_ and _vulnerability_ — into the final bivariate wildfire risk matrix.
+
+It is the notebook to run **THIRD**, after `ecological_value.ipynb` and `script_performance_based.ipynb` has completed successfully.
+
+Both input rasters are aligned to a shared grid (derived from the forest mask) before classification:
+
+- CRS: `EPSG:3035`
+- Resolution: `1000 m`
+- Extent/Grid: derived from forest mask
+- Output folder: `Outputs/`
 
 ## Inputs
-.....
+
+| Variable | Operationalization | Dataset | Source |
+|---|---|---|---|
+| Distance to nearest surface water | Euclidian distance to nearest water pixel | CORINE Land Cover 2018 | EEA, 2018 |
+| Ecoregion sensitivity | Sensitivity scores 0-1 | Ecoregions2017 | Dinerstein et al., 2017 |
+| Distance to nearest fire station | Bivariate: 10 km buffer around fire stations (0 or 1) | OpenStreetMap | OSM, 2026 |
+| Historical fire occurrences | Historic Fire yes / no (0 or 1) | European Forest Fire Information System | EFFIS team, 2026 |
+| Climate Favorability | Normalization (0-1) and mean of daily values 2020–2025 | Fire danger index | Copernicus Climate Change Service, 2019 |
+
+The vulnerability layer above was pre-processed in QGIS and Python and is provided as a single, ready-to-use `final_vulnerability_layer.tif`. The MESLI ecological value raster is the direct output of notebook 1.
+
+## Bivariate Classification
+
+Each forest pixel is classified into one of four quadrants using Fisher-Jenks breaks (k=2) applied independently to the MESLI and vulnerability distributions:
+
+```text
+thresh_EV  = FisherJenks(MESLI_forest_pixels, k=2)[0]
+thresh_V   = FisherJenks(Vuln_forest_pixels,  k=2)[0]
+
+Class 1 → Low EV,  Low V   → Low priority     (grey)
+Class 2 → Low EV,  High V  → Medium priority  (orange)
+Class 3 → High EV, Low V   → Medium priority  (blue)
+Class 4 → High EV, High V  → Critical         (red)
+
+bivariate = (ev_class * 2 + v_class + 1)
+bivariate_forest_only = bivariate * forest_mask
+```
+
+Both axes are min-max normalised to `0–1` before thresholding. Pixels outside the shared forest mask are set to NoData.
+
+## Outputs
+
+| File | Description |
+|---|---|
+| `Outputs/MESLI_Vulnerability_compared.png` | Side-by-side static overview of both input axes |
+| `Outputs/Wildfire_bivariate_matrix.png` | Static map of the four-class bivariate risk matrix |
+| `Outputs/Wildfire_interactive_map.html` | Interactive Folium map with toggleable layers (bivariate matrix, MESLI, vulnerability, policy coverage) |
+| `Data/Processed/policy_layer.gpkg` | Country-level policy layer joined from notebook 3, used as an optional overlay |
+
