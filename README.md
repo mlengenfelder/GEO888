@@ -14,15 +14,17 @@ The overarching research question for this project is:
 ## Step 1: Clone the Repository
 First, download this repository and enter the directory:
 
-> [!TIP]
-> You can either use this command, or change the directory you want the repository to be placed in (change this: `cd ~/Desktop`). 
-> Also make sure to run the commands separate!
-
 ```bash
 cd ~/Desktop
 git clone https://github.com/mlengenfelder/GEO888
 cd GEO888
 ```
+
+<blockquote style="border-left: 4px solid #1f883d; padding: 8px 16px">
+💡 <strong>Tip</strong><br>
+You can either use this command, or change the directory you want the repository to be placed in (change this: <code>cd ~/Desktop</code>).<br>
+Also make sure to run the commands separately!
+</blockquote>
 
 ## Step 2: Create and Activate the Environment
 
