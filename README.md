@@ -1,6 +1,6 @@
 # Wildfire Risk Indicator
 
-This project has the goal of creating an Environmental Indicator. The Final Indicator is a bivariate Matrix consisting of two axis. One is a vulnerability axis. This one was premade in QGIS and is provided as one final _.tif_ that can be downloaded and put into the raw data folder. The other one is the Ecological value axis, that is based on the MESLI framework, decsribed below. This one was made in the notebook *ecological_value.ipynb*. In another notebook *final_indicator.ipynb*, the two axis are combined to the bivariate matrix. A third notebook *name* provides extra context, regarding the policy of the targeted countries, providing a potential framework for making the indicator performance-based. 
+This project has the goal of creating an Environmental Indicator. The Final Indicator is a bivariate Matrix consisting of two axis. One is a vulnerability axis. This one was premade in QGIS and is provided as one final `.tif` that can be downloaded and put into the raw data folder. The other one is the Ecological value axis, that is based on the MESLI framework, decsribed below. This one was made in the notebook `ecological_value.ipynb`. In another notebook `final_indicator.ipynb`, the two axis are combined to the bivariate matrix. A third notebook `script_performance_based.ipynb` provides extra context, regarding the policy of the targeted countries, providing a potential framework for making the indicator performance-based. 
 
 The overarching research question for this project is:
 > _How can we measure wildfire risk in Europe and track change over time considering ecological value, vulnerability and policy goals to prioritize protection of important ecosystems?_
@@ -12,13 +12,16 @@ The overarching research question for this project is:
 <summary>Show Setup Instructions</summary>
 
 ## Step 1: Clone the Repository
-First, download this repository to your local Desktop (or use another location of your preference) and enter the directory:
+First, download this repository and enter the directory:
 
 ```bash
 cd ~/Desktop
 git clone https://github.com/mlengenfelder/GEO888
 cd GEO888
 ```
+> [!TIP]
+> You can either use this command, or change the directory you want the repository to be placed in (change this: `cd ~/Desktop`). Also make sure to run the commands seperate!
+
 
 ## Step 2: Create and Activate the Environment
 
@@ -28,13 +31,13 @@ conda activate wildfire_indicator
 ```
 
 ## Step 3: Initialize the Directory Structure
-* Open your Jupyter environment, open the notebook *ecological_value.ipynb*, select ecological-value as your kernel, and run the very first setup cell (Section: _0. Setup_).
-* Running this cell automatically creates the local folder path structure (data/raw/, data/processed/, outputs/, etc.) that is missing from the repository.
+* Open your Jupyter environment, open the notebook `ecological_value.ipynb`, select *wildfire_indicator* as your kernel, and run the very first setup cell (Section: _0. Setup_).
+* Running this cell automatically creates the local folder path structure (`data/raw/`, `data/processed/`, `outputs/`, etc.) that is missing from the repository.
 
 ## Step 4: Download and Position the Raw Data
 Now that the paths exist, download the raw data. Access the links below and place all input data into the raw data folder, that you just created!
 
-* GEO888/Data/Raw/
+* `GEO888/Data/Raw/`
 
 [Download here](https://drive.google.com/drive/folders/1jIK69oq6_iNJsSKrOb4NRa5fp5jVXjcp?usp=share_link)
 
@@ -53,12 +56,12 @@ Data/Raw/Forestfires_report_EU.pdf
 ```
 
 ## Execution Order
-* Open the *ecological_value.ipynb* notebook.
-* Ensure your notebook kernel is set to _ecological-value_.
+* Open the `ecological_value.ipynb` notebook.
+* Ensure your notebook kernel is set to *wildfire_indicator*.
 * Run the remaining cells sequentially from top to bottom (Cell-wise is highly recommended).
-* When you completed running the 1st notebook, run the 2nd notebook *script_performance_based.ipynb*.
-* After that, run the 3rd and final notebook *final_indicator.ipynb*.
-* All outputs (interactive maps, plots, and metrics) will be saved in outputs/ and data / processed. 
+* When you completed running the 1st notebook, run the 2nd notebook `script_performance_based.ipynb`.
+* After that, run the 3rd and final notebook `final_indicator.ipynb`.
+* All outputs (interactive maps, plots, and metrics) will be saved in `outputs/` and `data / processed`. 
 
 </details>
 
