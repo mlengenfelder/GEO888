@@ -7,8 +7,10 @@ This project has the goal of creating an Environmental Indicator. The Final Indi
 <em>How can we measure wildfire risk in Europe and track change over time considering ecological value, vulnerability and policy goals to prioritize protection of important ecosystems?</em>
 </blockquote>
 
-
 # Setup Instructions
+
+> [!IMPORTANT]
+> Carefully read the setup instructions before proceeding and running any notebooks!
 
 <details>
 
