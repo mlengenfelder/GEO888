@@ -5,11 +5,13 @@ This project has the goal of creating an Environmental Indicator. The Final Indi
 The overarching research question for this project is:
 > _How can we measure wildfire risk in Europe and track change over time considering ecological value, vulnerability and policy goals to prioritize protection of important ecosystems?_
 
+# Setup Instructions
+
 <details>
 
-<summary>Setup Instructions</summary>
+<summary>Show Setup Instructions</summary>
 
-### Step 1: Clone the Repository
+## Step 1: Clone the Repository
 First, download this repository to your local Desktop (or use another location of your preference) and enter the directory:
 
 ```bash
@@ -18,18 +20,18 @@ git clone https://github.com/mlengenfelder/GEO888
 cd GEO888
 ```
 
-### Step 2: Create and Activate the Environment
+## Step 2: Create and Activate the Environment
 
 ```bash
 conda env create -f environment.yml
 conda activate wildfire_indicator
 ```
 
-### Step 3: Initialize the Directory Structure
+## Step 3: Initialize the Directory Structure
 * Open your Jupyter environment, open the notebook *ecological_value.ipynb*, select ecological-value as your kernel, and run the very first setup cell (Section: _0. Setup_).
 * Running this cell automatically creates the local folder path structure (data/raw/, data/processed/, outputs/, etc.) that is missing from the repository.
 
-### Step 4: Download and Position the Raw Data
+## Step 4: Download and Position the Raw Data
 Now that the paths exist, download the raw data. Access the links below and place all input data into the raw data folder, that you just created!
 
 * GEO888/Data/Raw/
@@ -60,10 +62,15 @@ Data/Raw/Forestfires_report_EU.pdf
 
 </details>
 
-# 1. Notebook: Ecological Value / MESLI (ecological_value.ipynb)
+# 1. Notebook: Ecological Value 
+Name: `ecological_value.ipynb`
 
 This notebook creates the ecological value axis as a forest-only MESLI raster.
 It is the notebook to run **FIRST**!
+
+<details>
+
+<summary>Show details for 1st notebook</summary>
 
 All available input rasters are transformed to a shared grid:
 
@@ -124,6 +131,8 @@ The notebook checks that all output rasters have:
 - Identical width, height, and transform
 - Score values between `0` and `1`
 - Final MESLI values only on forest pixels
+
+</details>
 
 # 2. Notebook: Policy-Coverage across Europe (script_performance_based.ipynb)
 
