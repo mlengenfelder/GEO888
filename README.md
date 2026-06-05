@@ -58,7 +58,7 @@ Data/Raw/Forestfires_report_EU.pdf
 * After that, run the 3rd and final notebook *final_indicator.ipynb*.
 * All outputs (interactive maps, plots, and metrics) will be saved in outputs/ and data / processed. 
 
-<details>
+</details>
 
 # 1. Notebook: Ecological Value / MESLI (ecological_value.ipynb)
 
