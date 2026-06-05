@@ -2,8 +2,11 @@
 
 This project has the goal of creating an Environmental Indicator. The Final Indicator is a bivariate Matrix consisting of two axis. One is a vulnerability axis. This one was premade in QGIS and is provided as one final `.tif` that can be downloaded and put into the raw data folder. The other one is the Ecological value axis, that is based on the MESLI framework, decsribed below. This one was made in the notebook `ecological_value.ipynb`. In another notebook `final_indicator.ipynb`, the two axis are combined to the bivariate matrix. A third notebook `script_performance_based.ipynb` provides extra context, regarding the policy of the targeted countries, providing a potential framework for making the indicator performance-based. 
 
-The overarching research question for this project is:
-> _How can we measure wildfire risk in Europe and track change over time considering ecological value, vulnerability and policy goals to prioritize protection of important ecosystems?_
+<blockquote style="border-left: 4px solid #1b3fdeff; padding: 8px 16px">
+<strong>? Research Question</strong><br>
+<em>How can we measure wildfire risk in Europe and track change over time considering ecological value, vulnerability and policy goals to prioritize protection of important ecosystems?</em>
+</blockquote>
+
 
 # Setup Instructions
 
