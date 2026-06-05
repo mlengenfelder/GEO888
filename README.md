@@ -159,7 +159,7 @@ It is the notebook to run **SECOND**, after the preceding notebook has completed
 
 ##
 
-The EU Forest Fire Report PDF is parsed country by country, and each country's text section is searched for a set of policy-relevant keywords. The resulting classification is exported as a tabular file and as a spatial layer that is consumed as an optional overlay in notebook 2's interactive map.
+The EU Forest Fire Report PDF is parsed country by country, and each country's text section is searched for a set of policy-relevant keywords. The resulting classification is exported as a tabular file and as a spatial layer that is consumed as an optional overlay in notebook 3's interactive map.
 
 - Output folder: `Data/Processed/` and `Outputs/`
 
