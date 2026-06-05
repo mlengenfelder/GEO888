@@ -21,7 +21,7 @@ cd GEO888
 ```
 > [!TIP]
 > You can either use this command, or change the directory you want the repository to be placed in (change this: `cd ~/Desktop`). 
-> Also make sure to run the commands seperate!
+> Also make sure to run the commands separate!
 
 
 ## Step 2: Create and Activate the Environment
