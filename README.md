@@ -72,6 +72,8 @@ It is the notebook to run **FIRST**!
 
 <summary>Show details for 1st notebook</summary>
 
+## 
+
 All available input rasters are transformed to a shared grid:
 
 - CRS: `EPSG:3035`
@@ -134,10 +136,17 @@ The notebook checks that all output rasters have:
 
 </details>
 
-# 2. Notebook: Policy-Coverage across Europe (script_performance_based.ipynb)
+# 2. Notebook: Policy-Coverage across Europe 
+Name: `script_performance_based.ipynb`
 
 This notebook provides contextual, performance-based framing for the wildfire risk indicator by analysing how comprehensively each European country addresses wildfire in its national policies.
 It is the notebook to run **SECOND**, after the preceding notebook has completed.
+
+<details>
+
+<summary>Show details for 2nd notebook</summary>
+
+##
 
 The EU Forest Fire Report PDF is parsed country by country, and each country's text section is searched for a set of policy-relevant keywords. The resulting classification is exported as a tabular file and as a spatial layer that is consumed as an optional overlay in notebook 2's interactive map.
 
@@ -184,11 +193,20 @@ Each country receives a binary `Yes / No` per keyword, a total `Yes_Count`, and 
 | `Data/Processed/policy_layer.gpkg` | Country polygons with policy scores joined, in `EPSG:3035` |
 | `Outputs/Wildfire_policy_coverage.png` | Choropleth map of wildfire-policy coverage across Europe |
 
-# 3. Notebook: Final Indicator (final_indicator.ipynb)
+</details>
 
-This notebook combines the two indicator axes — _ecological-value_ and _vulnerability_ — into the final bivariate wildfire risk matrix.
+# 3. Notebook: Final Indicator 
+Name: `final_indicator.ipynb`
+
+This notebook combines the two indicator axes — _ecological-value_ and _vulnerability_ — into the final, bivariate wildfire risk matrix.
 
 It is the notebook to run **THIRD**, after `ecological_value.ipynb` and `script_performance_based.ipynb` has completed successfully.
+
+<details>
+
+<summary>Show details for 3rd notebook</summary>
+
+##
 
 Both input rasters are aligned to a shared grid (derived from the forest mask) before classification:
 
@@ -237,3 +255,4 @@ Both axes are min-max normalised to `0–1` before thresholding. Pixels outside 
 | `Outputs/Wildfire_interactive_map.html` | Interactive Folium map with toggleable layers (bivariate matrix, MESLI, vulnerability, policy coverage) |
 | `Data/Processed/policy_layer.gpkg` | Country-level policy layer joined from notebook 3, used as an optional overlay |
 
+</details>
